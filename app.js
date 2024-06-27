@@ -64,3 +64,27 @@ close.addEventListener("click",function(){
       form.reset();})
       .catch(error => console.error('Error!', error.message))
   })
+
+  //scroll down animation
+  // Define the callback function that will be executed when visibility changes
+const callback = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log('Element is in view!');
+      // Perform any additional actions here
+      entry.target.classList.add('show');
+
+    }
+  });
+};
+
+// Create an IntersectionObserver instance
+const observer = new IntersectionObserver(callback);
+
+// Target the element to observe
+const target = document.querySelectorAll('.hidden');
+
+// Start observing the target element
+target.forEach((entries)=>{
+  observer.observe(entries);
+})
